@@ -3,15 +3,25 @@ package com.umirov.myapplication
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.umirov.myapplication.databinding.FilmItemBinding
 
-//В конструктор класс передается layout, который мы создали(film_item.xml)
+// In the constructor of the class, we pass the layout we created (film_item.xml)
 class FilmViewHolder(private val binding: FilmItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    // Bind views from layout to variables
     fun bind(film: Film) {
-        //Привязываем view из layout к переменным
+        // Set the title
         binding.title.text = film.title
-        binding.poster.setImageResource(film.poster)
+        // Set the poster
+        Glide.with(itemView)
+            .load(film.poster)
+            .centerCrop()
+            .into(binding.poster)
+        // Set the description
         binding.description.text = film.description
+        // Set the rating
+        binding.ratingDonut.setProgress((film.rating * 10).toInt())
     }
 
     companion object {
