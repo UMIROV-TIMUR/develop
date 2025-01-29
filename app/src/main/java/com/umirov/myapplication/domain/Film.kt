@@ -1,4 +1,4 @@
-package com.umirov.myapplication
+package com.umirov.myapplication.domain
 
 
 import android.os.Parcel
@@ -9,8 +9,9 @@ import androidx.versionedparcelable.VersionedParcelize
 @VersionedParcelize
 class Film(
     val title: String,
-    val poster: Int,
+    val poster: String,
     val description: String,
+    var rating: Double = 0.0,
     var isInFavorites: Boolean = false
 ) : Parcelable {
 
@@ -21,7 +22,7 @@ class Film(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(title)
-        parcel.writeInt(poster)
+        parcel.writeString(poster)
         parcel.writeString(description)
     }
 
@@ -30,7 +31,7 @@ class Film(
         override fun createFromParcel(parcel: Parcel): Film {
             return Film(
                 parcel.readString() ?: "",
-                parcel.readInt(),
+                parcel.readString() ?: "",
                 parcel.readString() ?: ""
             )
         }
