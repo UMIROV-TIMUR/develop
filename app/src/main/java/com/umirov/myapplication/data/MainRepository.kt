@@ -1,8 +1,8 @@
 package com.umirov.myapplication.data
 
-import com.umirov.myapplication.R
-import com.umirov.myapplication.domain.Film
+import com.umirov.myapplication.data.Entity.TmdbResults
+import retrofit2.Call
 
-class MainRepository {
-
+interface MainRepository {
+    fun getPopularFilms(apiKey: String, language: String, page: Int): Call<TmdbResults>
 }

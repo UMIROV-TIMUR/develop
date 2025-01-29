@@ -1,8 +1,13 @@
 plugins {
-
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp") version "2.1.0-1.0.29"
+
+
+
+
+
 
 
 
@@ -71,16 +76,17 @@ android {
 
 dependencies {
 
-
+    implementation(libs.dagger)
+    implementation(libs.symbol.processing.api)
+    ksp(libs.dagger.compiler.v2511)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.core.ktx.v1101)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.glide)
-    annotationProcessor(libs.compiler)
-
     implementation (libs.lottie)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
