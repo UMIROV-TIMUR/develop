@@ -17,9 +17,19 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/collections"
+        android:id="@+id/selections"
         android:icon="@drawable/baseline_filter"
-        android:title="@string/menu_collections"
+        android:title="@string/menu_selections"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/menu_home_title_text"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/menu_settings_title_text"
         app:showAsAction="ifRoom" />
 
 
