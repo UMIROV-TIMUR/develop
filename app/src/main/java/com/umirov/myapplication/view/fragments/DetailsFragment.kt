@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.umirov.myapplication.R
 import com.umirov.myapplication.data.ApiConstants
 import com.umirov.myapplication.databinding.FragmentDetailsBinding
-import com.umirov.myapplication.domain.Film
+import com.umirov.myapplication.data.Entity.Film
 
 class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null

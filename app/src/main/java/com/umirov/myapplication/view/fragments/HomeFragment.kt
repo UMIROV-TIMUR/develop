@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.umirov.myapplication.data.Entity.Film
 import com.umirov.myapplication.databinding.FragmentHomeBinding
-import com.umirov.myapplication.domain.Film
 import com.umirov.myapplication.utils.AnimationHelper
 import com.umirov.myapplication.view.rv_adapters.FilmListRecyclerAdapter
 import com.umirov.myapplication.view.rv_adapters.TopSpacingItemDecoration

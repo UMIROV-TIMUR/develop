@@ -3,7 +3,7 @@ package com.umirov.myapplication.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.umirov.myapplication.App
-import com.umirov.myapplication.domain.Film
+import com.umirov.myapplication.data.Entity.Film
 import com.umirov.myapplication.domain.Interactor
 import javax.inject.Inject
 

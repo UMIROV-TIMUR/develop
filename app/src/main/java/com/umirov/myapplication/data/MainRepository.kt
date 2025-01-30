@@ -3,7 +3,7 @@ package com.umirov.myapplication.data
 import android.content.ContentValues
 import android.database.Cursor
 import com.umirov.myapplication.data.db.DatabaseHelper
-import com.umirov.myapplication.domain.Film
+import com.umirov.myapplication.data.Entity.Film
 
 class MainRepository(databaseHelper: DatabaseHelper) {
     //Инициализируем объект для взаимодействия с БД

@@ -1,6 +1,7 @@
 package com.umirov.myapplication.domain
 
 import com.umirov.myapplication.data.*
+import com.umirov.myapplication.data.Entity.Film
 import com.umirov.myapplication.data.Entity.TmdbResults
 import com.umirov.myapplication.data.preferences.PreferenceProvider
 import com.umirov.myapplication.utils.Converter

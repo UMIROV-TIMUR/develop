@@ -75,7 +75,8 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.dagger)
     implementation(libs.symbol.processing.api)

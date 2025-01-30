@@ -10,7 +10,7 @@ import com.umirov.myapplication.view.rv_adapters.FilmListRecyclerAdapter
 import com.umirov.myapplication.view.rv_viewholders.MainActivity
 import com.umirov.myapplication.view.rv_adapters.TopSpacingItemDecoration
 import com.umirov.myapplication.databinding.FragmentFavoritesBinding
-import com.umirov.myapplication.domain.Film
+import com.umirov.myapplication.data.Entity.Film
 import com.umirov.myapplication.utils.AnimationHelper
 
 
