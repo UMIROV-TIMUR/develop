@@ -26,6 +26,11 @@
         android:icon="@drawable/baseline_home_24"
         android:title="@string/menu_home_title_text"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/menu_settings_title_text"
+        app:showAsAction="ifRoom" />
 
 
 </menu>

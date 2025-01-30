@@ -10,6 +10,7 @@ import com.umirov.myapplication.view.fragments.DetailsFragment
 import com.umirov.myapplication.view.fragments.FavoritesFragment
 import com.umirov.myapplication.view.fragments.HomeFragment
 import com.umirov.myapplication.view.fragments.SelectionsFragment
+import com.umirov.myapplication.view.fragments.SettingsFragment
 import com.umirov.myapplication.view.fragments.SplashFragment
 import com.umirov.myapplication.view.fragments.WatchLaterFragment
 
@@ -77,6 +78,12 @@ class MainActivity : AppCompatActivity() {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: HomeFragment(), tag)
+                    true
+                }
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment ?: SettingsFragment(), tag)
                     true
                 }
                 else -> false

@@ -76,6 +76,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.dagger)
     implementation(libs.symbol.processing.api)
     ksp(libs.dagger.compiler.v2511)

@@ -14,39 +14,39 @@ class HomeFragmentViewModel : ViewModel() {
     @Inject
     lateinit var interactor: Interactor
 
-
     init {
         App.instance.dagger.inject(this)
+        getFilms()
+    }
+
+    fun getFilms() {
         interactor.getFilmsFromApi(1, object : ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsListLiveData.postValue(films)
             }
 
             override fun onFailure() {
+                filmsListLiveData.postValue(interactor.getFilmsFromDB())
+            }
+        })
+    }
+    // пагинация*
+    fun getFilmsFromApi(page: Int, callback: ApiCallback) {
+        interactor.getFilmsFromApi(page, object : ApiCallback {
+            override fun onSuccess(films: List<Film>) {
+                callback.onSuccess(films)
+
+            }
+            override fun onFailure() {
+                callback.onFailure()
             }
         })
 
-
     }
+
 
     interface ApiCallback {
         fun onSuccess(films: List<Film>)
         fun onFailure()
     }
-
-    fun getFilmsFromApi(page: Int, callback: ApiCallback) {
-        interactor.getFilmsFromApi(page, object : ApiCallback {
-            override fun onSuccess(films: List<Film>) {
-                filmsListLiveData.postValue(films)
-
-                callback.onSuccess(films)
-            }
-
-            override fun onFailure() {
-                callback.onFailure()
-            }
-        })
-    }
 }
-
-

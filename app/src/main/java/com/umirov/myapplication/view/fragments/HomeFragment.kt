@@ -1,7 +1,6 @@
 package com.umirov.myapplication.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,14 +62,20 @@ class HomeFragment : Fragment() {
         )
 
         initSearchView()
+        initPullToRefresh()
         initRecycler()
 
         viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
-            Log.d("HomeFragment", "LiveData updated with ${it.size} films")
+
             filmsDataBase = it
+            filmsAdapter.addItems(it)
         })
 
-        // Add Scroll Listener to RecyclerView
+
+
+
+
+        // Add Scroll Listener to RecyclerView пагинация*
         binding.mainRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -84,7 +89,19 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+
+
     }
+        private fun initPullToRefresh() {
+            binding.pullToRefresh.setOnRefreshListener {
+                filmsAdapter.items.clear()
+                viewModel.getFilms()
+                binding.pullToRefresh.isRefreshing = false
+            }
+
+    }
+
+
 
 
     private fun initSearchView() {
@@ -94,12 +111,12 @@ class HomeFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Log.d("SearchView", "Query submitted: $query")
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.d("SearchView", "Query changed: $newText")
+
                 if (newText.isNullOrEmpty()) {
                     filmsAdapter.addItems(filmsDataBase)
                     return true
@@ -135,13 +152,12 @@ class HomeFragment : Fragment() {
         currentPage++
         viewModel.getFilmsFromApi(currentPage, object : HomeFragmentViewModel.ApiCallback {
             override fun onSuccess(films: List<Film>) {
-                Log.d("HomeFragment", "Films fetched: ${films.size}")
                 filmsAdapter.addItems(films)
                 isLoading = false
             }
 
             override fun onFailure() {
-                Log.d("HomeFragment", "Failed to fetch films")
+
 
 
                 isLoading = false

@@ -14,7 +14,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<FilmListRecyclerAdapter.FilmViewHolder>() {
 
 
-    private val items = mutableListOf<Film>()
+     val items = mutableListOf<Film>()
 
     override fun getItemCount() = items.size
 
@@ -40,6 +40,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
         val startPosition = items.size
         items.addAll(list)
         notifyItemRangeInserted(startPosition, list.size)
+        notifyDataSetChanged()
 
 
     }

@@ -1,39 +1,27 @@
 package com.umirov.myapplication.di.modules
 
-import com.umirov.myapplication.data.*
+import android.content.Context
 import com.umirov.myapplication.data.MainRepository
+import com.umirov.myapplication.data.TmdbApi
+import com.umirov.myapplication.data.preferences.PreferenceProvider
 import com.umirov.myapplication.domain.Interactor
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-abstract class DomainModule {
+//Передаем контекст для SharedPreferences через конструктор
+class DomainModule(val context: Context) {
+    //Нам нужно контекст как-то провайдить, поэтому создаем такой метод
+    @Provides
+    fun provideContext() = context
 
-
-    @Binds
     @Singleton
-    abstract fun bindMainRepository(impl: MainRepositoryImpl): MainRepository
+    @Provides
+    //Создаем экземпляр SharedPreferences
+    fun providePreferences(context: Context) = PreferenceProvider(context)
 
-
-
-    companion object{
-        @Provides
-        @Singleton
-        fun provideInteractor(
-            repository: MainRepository,
-            tmdbApi: TmdbApi
-        ) : Interactor{
-            return Interactor(repository, tmdbApi)
-        }
-
-
-
-    }
-    }
-
-
+    @Singleton
+    @Provides
+    fun provideInteractor(repository: MainRepository, tmdbApi: TmdbApi, preferenceProvider: PreferenceProvider) = Interactor(repo = repository, retrofitService = tmdbApi, preferences = preferenceProvider)
+}
