@@ -3,15 +3,20 @@ package com.umirov.myapplication.data.Entity
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import androidx.versionedparcelable.VersionedParcelize
 
 
 @VersionedParcelize
-class Film(
-    val title: String,
-    val poster: String,
-    val description: String,
-    var rating: Double = 0.0,
+@Entity(tableName = "cached_films", indices = [androidx.room.Index(value = ["title"], unique = true)])
+data class Film(
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "poster_path") val poster: String,
+    @ColumnInfo(name = "overview") val description: String,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo(name = "vote_average") val rating: Double = 0.0,
     var isInFavorites: Boolean = false
 ) : Parcelable {
 

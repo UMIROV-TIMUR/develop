@@ -1,5 +1,6 @@
 package com.umirov.myapplication.domain
 
+import androidx.lifecycle.LiveData
 import com.umirov.myapplication.data.*
 import com.umirov.myapplication.data.Entity.Film
 import com.umirov.myapplication.data.Entity.TmdbResults
@@ -19,11 +20,9 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = Converter.convertApiListToDTOList(response.body()?.tmdbFilms)
                 //Кладем фильмы в бд
-                list.forEach {
-                    repo.putToDb(film = it)
 
-                }
-                callback.onSuccess(list)
+                repo.putToDb(list)
+                callback.onSuccess()
             }
 
             override fun onFailure(call: Call<TmdbResults>, t: Throwable) {
@@ -39,6 +38,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     //Метод для получения настроек
     fun getDefaultCategoryFromPreferences() = preferences.geDefaultCategory()
 
-    fun getFilmsFromDB(): List<Film>  = repo.getAllFromDB()
+    fun getFilmsFromDB(): LiveData<List<Film>>  = repo.getAllFromDB()
+
 }
 
