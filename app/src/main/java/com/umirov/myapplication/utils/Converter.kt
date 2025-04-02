@@ -1,7 +1,7 @@
 package com.umirov.myapplication.utils
 
-import com.umirov.myapplication.data.Entity.TmdbFilm
-import com.umirov.myapplication.data.Entity.Film
+import com.umirov.myapplication.data.entity.TmdbFilm
+import com.umirov.myapplication.data.entity.Film
 
 object Converter {
     fun convertApiListToDTOList(list: List<TmdbFilm>?): List<Film> {

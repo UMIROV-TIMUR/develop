@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.umirov.myapplication.R
+import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.databinding.ActivityMainBinding
-import com.umirov.myapplication.data.Entity.Film
 import com.umirov.myapplication.view.fragments.DetailsFragment
 import com.umirov.myapplication.view.fragments.FavoritesFragment
 import com.umirov.myapplication.view.fragments.HomeFragment

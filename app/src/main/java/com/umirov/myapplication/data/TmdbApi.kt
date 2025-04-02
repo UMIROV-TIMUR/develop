@@ -1,6 +1,6 @@
 package com.umirov.myapplication.data
 
-import com.umirov.myapplication.data.Entity.TmdbResults
+import com.umirov.myapplication.data.entity.TmdbResults
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
