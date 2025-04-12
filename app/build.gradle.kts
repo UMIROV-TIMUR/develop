@@ -6,14 +6,6 @@ plugins {
     id("kotlin-parcelize")
 
 
-
-
-
-
-
-
-
-
 }
 
 android {
@@ -49,10 +41,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField ("boolean", "DEBUG", "true")
+            buildConfigField("boolean", "DEBUG", "true")
         }
         release {
-            buildConfigField ("boolean", "DEBUG", "false")
+            buildConfigField("boolean", "DEBUG", "false")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -78,10 +70,15 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.rxjava3.rxandroid)
+    implementation(libs.rxjava)
+    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.rxjava3.rxandroid)
     implementation(libs.androidx.recyclerview)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.androidx.room.runtime)
-    implementation (libs.androidx.room.ktx)
+    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.dagger)
@@ -94,7 +91,7 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.glide)
-    implementation (libs.lottie)
+    implementation(libs.lottie)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
