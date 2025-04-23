@@ -70,7 +70,8 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.rxjava3.retrofit.adapter)
+    implementation(libs.rxkotlin)
     implementation(libs.rxjava3.rxandroid)
     implementation(libs.rxjava)
     implementation(libs.androidx.room.rxjava3)
