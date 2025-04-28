@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.umirov.myapplication.data.ApiConstants
 import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.databinding.FilmItemBinding
 import com.umirov.myapplication.view.customviews.RatingDonutView
+import com.umirov.remote_module.entity.ApiConstants
 
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) :
     RecyclerView.Adapter<FilmListRecyclerAdapter.FilmViewHolder>() {

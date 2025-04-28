@@ -3,10 +3,27 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.android.library) apply false
+    kotlin("jvm")
 
+
+
+
+}
+apply {
+    from ("$rootDir/versions.gradle.kts")
 
 
 }
 
 
 
+dependencies {
+    implementation(kotlin("stdlib-jdk8"))
+}
+repositories {
+
+}
+kotlin {
+    jvmToolchain(8)
+}

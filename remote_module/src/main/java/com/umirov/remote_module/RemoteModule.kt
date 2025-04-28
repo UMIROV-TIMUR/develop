@@ -1,12 +1,9 @@
-package com.umirov.myapplication.di.modules
+package com.umirov.remote_module
 
-import com.umirov.myapplication.BuildConfig
-import com.umirov.myapplication.data.ApiConstants
-import com.umirov.myapplication.data.TmdbApi
+
+import com.umirov.remote_module.entity.ApiConstants
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,9 +13,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-class RemoteModule {
 
+class RemoteModule {
 
     @Provides
     @Singleton

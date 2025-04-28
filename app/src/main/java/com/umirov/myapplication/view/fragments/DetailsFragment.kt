@@ -19,7 +19,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.umirov.myapplication.R
-import com.umirov.myapplication.data.ApiConstants
+import com.umirov.remote_module.entity.ApiConstants
 import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.databinding.FragmentDetailsBinding
 import com.umirov.myapplication.viewmodel.DetailsFragmentViewModel

@@ -2,9 +2,9 @@ package com.umirov.myapplication.di.modules
 
 import android.content.Context
 import com.umirov.myapplication.data.MainRepository
-import com.umirov.myapplication.data.TmdbApi
 import com.umirov.myapplication.data.preferences.PreferenceProvider
 import com.umirov.myapplication.domain.Interactor
+import com.umirov.remote_module.TmdbApi
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

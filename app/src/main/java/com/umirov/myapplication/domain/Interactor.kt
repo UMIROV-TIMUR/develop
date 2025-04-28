@@ -2,18 +2,15 @@ package com.umirov.myapplication.domain
 
 import com.umirov.myapplication.data.API
 import com.umirov.myapplication.data.MainRepository
-import com.umirov.myapplication.data.TmdbApi
 import com.umirov.myapplication.data.entity.Film
-import com.umirov.myapplication.data.entity.TmdbResults
 import com.umirov.myapplication.data.preferences.PreferenceProvider
 import com.umirov.myapplication.utils.Converter
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.umirov.remote_module.TmdbApi
+
 
 class Interactor(
     private val repo: MainRepository,
@@ -28,32 +25,30 @@ class Interactor(
         progressBarState.onNext(true)
         //Метод getDefaultCategoryFromPreferences() будет нам получать при каждом запросе нужный нам список фильмов
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
-            .enqueue(object : Callback<TmdbResults> {
-                override fun onResponse(call: Call<TmdbResults>, response: Response<TmdbResults>) {
-                    val list = Converter.convertApiListToDTOList(response.body()?.tmdbFilms)
-                    //Кладем фильмы в бд
-                    //В случае успешного ответа кладём фильмы в БД и выключаем ProgressBar
-                    Completable.fromSingle<List<Film>> {
-                        repo.putToDb(list)
-                    }
-                        .subscribeOn(Schedulers.io())
-                        .subscribe()
+
+            .subscribeOn(Schedulers.io())
+            .map {
+                Converter.convertApiListToDTOList(it.tmdbFilms)
+            }
+            .subscribeBy(
+                onError = {
                     progressBarState.onNext(false)
 
-                }
-
-
-                override fun onFailure(call: Call<TmdbResults>, t: Throwable) {
-                    //В случае провала выключаем ProgressBar
+                },
+                onNext = {
                     progressBarState.onNext(false)
+                    repo.putToDb(it)
+
 
                 }
-            })
+            )
     }
-    fun getSearchResultFromApi(search: String): Observable<List<Film>> = retrofitService.getFilmFromSearch(API.KEY, "ru-RU", search, 1)
-        .map {
-            Converter.convertApiListToDTOList(it.tmdbFilms)
-        }
+
+    fun getSearchResultFromApi(search: String): Observable<List<Film>> =
+        retrofitService.getFilmFromSearch(API.KEY, "ru-RU", search, 1)
+            .map {
+                Converter.convertApiListToDTOList(it.tmdbFilms)
+            }
 
     //Метод для сохранения настроек
     fun saveDefaultCategoryToPreferences(category: String) {

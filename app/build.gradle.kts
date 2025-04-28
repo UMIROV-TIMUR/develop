@@ -1,11 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
     alias(libs.plugins.compose.compiler)
-    id("com.google.devtools.ksp") version "2.1.0-1.0.29"
+
+
     id("kotlin-parcelize")
+    id("kotlin-kapt")
 
 
+}
+apply {
+    from ("$rootDir/versions.gradle.kts")
 }
 
 android {
@@ -70,6 +76,15 @@ android {
 }
 
 dependencies {
+
+    kapt(libs.dagger.compiler.v2511)
+
+
+    implementation(libs.jsr250.api)
+    implementation(libs.dagger.android.support)
+
+    implementation(libs.androidx.annotation)
+    implementation(project(":remote_module"))
     implementation(libs.rxjava3.retrofit.adapter)
     implementation(libs.rxkotlin)
     implementation(libs.rxjava3.rxandroid)
@@ -80,11 +95,11 @@ dependencies {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.dagger)
     implementation(libs.symbol.processing.api)
-    ksp(libs.dagger.compiler.v2511)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.hilt.android)
     implementation(libs.androidx.core.ktx.v1101)
     implementation(libs.retrofit)
