@@ -18,7 +18,7 @@ import com.umirov.myapplication.utils.AutoDisposable
 import com.umirov.myapplication.utils.addTo
 import com.umirov.myapplication.view.rv_adapters.FilmListRecyclerAdapter
 import com.umirov.myapplication.view.rv_adapters.TopSpacingItemDecoration
-import com.umirov.myapplication.view.rv_viewholders.MainActivity
+import com.umirov.myapplication.view.MainActivity
 import com.umirov.myapplication.viewmodel.HomeFragmentViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable

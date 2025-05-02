@@ -1,11 +1,15 @@
-package com.umirov.myapplication.view.rv_viewholders
+package com.umirov.myapplication.view
 
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.umirov.myapplication.R
 import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.databinding.ActivityMainBinding
+import com.umirov.myapplication.receivers.ConnectionChecker
 import com.umirov.myapplication.view.fragments.DetailsFragment
 import com.umirov.myapplication.view.fragments.FavoritesFragment
 import com.umirov.myapplication.view.fragments.HomeFragment
@@ -16,6 +20,7 @@ import com.umirov.myapplication.view.fragments.WatchLaterFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var receiver: BroadcastReceiver
 
 
 
@@ -26,15 +31,28 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        initNavigation()
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, SplashFragment())
                 .commit()
+            receiver = ConnectionChecker()
+            val filers = IntentFilter().apply {
+                addAction(Intent.ACTION_BATTERY_LOW)
+                addAction(Intent.ACTION_POWER_CONNECTED)
+            }
+            registerReceiver(receiver, filers)
+
+
+        }
+        override fun onDestroy() {
+            super.onDestroy()
+            unregisterReceiver(receiver)
         }
 
-        initNavigation()
-    }
+
+
 
 
     fun launchDetailsFragment(film: Film) {
