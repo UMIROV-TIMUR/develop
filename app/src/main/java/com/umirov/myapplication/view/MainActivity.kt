@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         initNavigation()
 
         if (savedInstanceState == null)
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             super.onDestroy()
             unregisterReceiver(receiver)
         }
+
 
 
 

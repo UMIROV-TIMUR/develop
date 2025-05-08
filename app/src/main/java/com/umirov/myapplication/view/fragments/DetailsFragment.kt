@@ -19,10 +19,11 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.umirov.myapplication.R
-import com.umirov.remote_module.entity.ApiConstants
 import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.databinding.FragmentDetailsBinding
+import com.umirov.myapplication.view.notifications.NotificationHelper
 import com.umirov.myapplication.viewmodel.DetailsFragmentViewModel
+import com.umirov.remote_module.entity.ApiConstants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -77,6 +78,9 @@ class DetailsFragment : Fragment() {
 
         binding.detailsFabDownloadWp.setOnClickListener {
             performAsyncLoadOfPoster()
+        }
+        binding.detailsFabWatchLater.setOnClickListener {
+            NotificationHelper.createNotification(requireContext(), film)
         }
     }
 
