@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var receiver: BroadcastReceiver
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         initNavigation()
 
-        if (savedInstanceState == null)
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, SplashFragment())
                 .commit()
@@ -44,17 +43,14 @@ class MainActivity : AppCompatActivity() {
                 addAction(Intent.ACTION_POWER_CONNECTED)
             }
             registerReceiver(receiver, filers)
-
-
-        }
-        override fun onDestroy() {
-            super.onDestroy()
-            unregisterReceiver(receiver)
         }
 
+    }
 
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
+    }
 
 
     fun launchDetailsFragment(film: Film) {
@@ -82,30 +78,35 @@ class MainActivity : AppCompatActivity() {
                     changeFragment(fragment ?: FavoritesFragment(), tag)
                     true
                 }
+
                 R.id.watchlater -> {
                     val tag = "watchlater"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: WatchLaterFragment(), tag)
                     true
                 }
+
                 R.id.selections -> {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: SelectionsFragment(), tag)
                     true
                 }
+
                 R.id.home -> {
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: HomeFragment(), tag)
                     true
                 }
+
                 R.id.settings -> {
                     val tag = "settings"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment(fragment ?: SettingsFragment(), tag)
                     true
                 }
+
                 else -> false
             }
         }

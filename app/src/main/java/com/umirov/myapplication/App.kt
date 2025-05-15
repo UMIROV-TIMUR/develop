@@ -41,7 +41,10 @@ class App : Application() {
             notificationManager.createNotificationChannel(mChannel)
         }
 
+
     }
+
+
 
     companion object {
         lateinit var instance: App

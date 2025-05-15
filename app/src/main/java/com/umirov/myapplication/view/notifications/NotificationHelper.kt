@@ -1,26 +1,29 @@
 package com.umirov.myapplication.view.notifications
 
+import android.Manifest
+import android.app.PendingIntent
 import android.content.Context
-import androidx.core.app.NotificationManagerCompat
-import com.bumptech.glide.Glide
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import com.bumptech.glide.request.target.CustomTarget
-import android.app.PendingIntent
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.umirov.myapplication.R
-import com.umirov.remote_module.entity.ApiConstants
 import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.view.MainActivity
+import com.umirov.remote_module.entity.ApiConstants
 
 
 object NotificationHelper {
     fun createNotification(context: Context, film: Film) {
         val mIntent = Intent(context, MainActivity::class.java)
         val pendingIntent =
-            PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_IMMUTABLE)
 
         val builder =
             NotificationCompat.Builder(context!!, NotificationConstants.CHANNEL_ID).apply {
@@ -48,6 +51,24 @@ object NotificationHelper {
                     //Создаем нотификации в стиле big picture
                     builder.setStyle(NotificationCompat.BigPictureStyle().bigPicture(resource))
                     //Обновляем нотификацию
+                    if (ActivityCompat.checkSelfPermission(
+                            context,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        ActivityCompat.requestPermissions(
+                            context as MainActivity,
+                            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                            1
+                        )
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return
+                    }
                     notificationManager.notify(film.id, builder.build())
                 }
             })

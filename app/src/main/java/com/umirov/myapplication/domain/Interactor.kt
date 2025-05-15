@@ -5,11 +5,11 @@ import com.umirov.myapplication.data.MainRepository
 import com.umirov.myapplication.data.entity.Film
 import com.umirov.myapplication.data.preferences.PreferenceProvider
 import com.umirov.myapplication.utils.Converter
+import com.umirov.remote_module.TmdbApi
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import com.umirov.remote_module.TmdbApi
 
 
 class Interactor(
@@ -24,7 +24,12 @@ class Interactor(
         //Показываем ProgressBar
         progressBarState.onNext(true)
         //Метод getDefaultCategoryFromPreferences() будет нам получать при каждом запросе нужный нам список фильмов
-        retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page)
+        retrofitService.getFilms(
+            apiKey = API.KEY,
+            language = "ru-RU",
+            query = getDefaultCategoryFromPreferences(),
+            page = page
+        )
 
             .subscribeOn(Schedulers.io())
             .map {
