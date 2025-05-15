@@ -1,33 +1,91 @@
 [versions]
-agp = "8.7.2"
-kotlin = "2.0.21"
+agp = "8.10.0"
+annotation = "1.9.1"
+artifactid = "version"
+annotationVersion = "1.9.1"
+converterGson = "2.9.0"
+coreKtxVersion = "1.16.0"
+dagger = "2.56.2"
+
+daggerAndroidSupport = "2.44"
+daggerCompiler = "2.56.2"
+fragmentKtx = "1.8.6"
+glide = "4.16.0"
+googleMaterial = "1.12.0"
+hiltAndroid = "2.44.2"
+jsr250Api = "1.0"
+kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+kotlinCoroutinesCore = "1.10.1"
 kotlinGradlePlugin = "2.1.0-RC"
+kotlinStdlib = "2.1.10"
+kotlinStdlibJdk7 = "2.1.0"
+kotlinxCoroutinesAndroidVersion = "2.2.0"
+loggingInterceptor = "4.12.0"
+lottie = "6.6.2"
 material = "1.12.0"
-activity = "1.9.3"
-constraintlayout = "2.2.0"
+activity = "1.10.1"
+constraintlayout = "2.2.1"
 cardviewV7 = "28.0.0"
 materialVersion = "<version>"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.9.3"
-composeBom = "2024.10.01"
+activityCompose = "1.10.1"
+composeBom = "2025.04.01"
+recyclerview = "1.4.0"
+roomRuntime = "2.7.1"
+rxandroidVersion = "3.0.2"
+rxjava = "3.1.5"
+rxjava3RetrofitAdapter = "3.0.0"
+rxjavaVersion = "3.1.5"
+rxkotlin = "3.0.1"
+supportAnnotations = "28.0.0"
+swiperefreshlayout = "1.1.0"
+symbolProcessingApi = "2.1.0-1.0.29"
+
+
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+#noinspection SimilarGradleDependency
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotationVersion" }
+androidx-core-ktx-v1101 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomRuntime" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+#noinspection SimilarGradleDependency
+annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+
+dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
+dagger-compiler-v2511 = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+jsr250-api = { module = "javax.annotation:jsr250-api", version.ref = "jsr250Api" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutinesCore" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinStdlib" }
+kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlinStdlibJdk7" }
+logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+#noinspection SimilarGradleDependency
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 cardview-v7 = { group = "com.android.support", name = "cardview-v7", version.ref = "cardviewV7" }
-material-vversion = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -38,9 +96,23 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+#noinspection SimilarGradleDependency
+material-v1100 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+#noinspection SimilarGradleDependency
+rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+#noinspection SimilarGradleDependency
+rxjava-v3010 = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjavaVersion" }
+rxjava3-retrofit-adapter = { module = "com.github.akarnokd:rxjava3-retrofit-adapter", version.ref = "rxjava3RetrofitAdapter" }
+rxjava3-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroidVersion" }
+rxkotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxkotlin" }
+support-annotations = { group = "com.android.support", name = "support-annotations", version.ref = "supportAnnotations" }
+symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "symbolProcessingApi" }
+
 
 [plugins]
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

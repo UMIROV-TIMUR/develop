@@ -1,25 +1,40 @@
 plugins {
-
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
     alias(libs.plugins.compose.compiler)
 
 
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 
+
+}
+apply {
+    from ("$rootDir/versions.gradle.kts")
 }
 
 android {
     namespace = "com.umirov.myapplication"
     compileSdk = 35
     buildFeatures {
+        buildConfig = true
+
         viewBinding = true
         compose = true
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
 
     }
 
     defaultConfig {
         applicationId = "com.umirov.myapplication"
-        minSdk = 22
+        minSdk = 28
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -31,7 +46,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("boolean", "DEBUG", "true")
+        }
         release {
+            buildConfigField("boolean", "DEBUG", "false")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -58,8 +77,37 @@ android {
 
 dependencies {
 
+    kapt(libs.dagger.compiler.v2511)
 
-    implementation(libs.androidx.core.ktx)
+
+    implementation(libs.jsr250.api)
+    implementation(libs.dagger.android.support)
+
+    implementation(libs.androidx.annotation)
+    implementation(project(":remote_module"))
+    implementation(libs.rxjava3.retrofit.adapter)
+    implementation(libs.rxkotlin)
+    implementation(libs.rxjava3.rxandroid)
+    implementation(libs.rxjava)
+    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.rxjava3.rxandroid)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.dagger)
+    implementation(libs.symbol.processing.api)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.core.ktx.v1101)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.glide)
+    implementation(libs.lottie)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
@@ -74,11 +122,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation (libs.material.vversion)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
 
 }
